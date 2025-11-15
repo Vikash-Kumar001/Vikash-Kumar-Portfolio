@@ -97,7 +97,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
           
           <motion.div
-            className="relative glass p-8 md:p-12 rounded-2xl border-2 border-primary/40 backdrop-blur-xl shadow-2xl max-w-md mx-4 bg-neutral-900/90"
+            className="relative glass p-6 md:p-8 rounded-2xl border-2 border-primary/40 backdrop-blur-xl shadow-2xl max-w-2xl mx-4 bg-neutral-900/90"
             initial={{ scale: 0.7, y: 30, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
@@ -107,13 +107,13 @@ const Home = () => {
             }}
           >
             <motion.div
-              className="text-center"
+              className="flex items-center justify-center gap-3 md:gap-4 flex-wrap"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
               <motion.div
-                className="text-6xl md:text-7xl mb-4"
+                className="text-4xl md:text-5xl"
                 animate={{ 
                   rotate: [0, 15, -15, 0],
                   scale: [1, 1.15, 1]
@@ -128,7 +128,7 @@ const Home = () => {
                 👋
               </motion.div>
               <motion.h2 
-                className="text-3xl md:text-4xl font-bold text-white mb-3"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}

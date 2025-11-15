@@ -6,19 +6,24 @@ node_modules
 # Testing
 /coverage
 *.lcov
+.nyc_output
 
 # Production
 /dist
 /build
 storybook-static
 
+# Vite
+.vite
+*.local
+
 # Misc
-.DS_Store
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
 
 # Logs
 npm-debug.log*
@@ -26,6 +31,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+*.log
 
 # Editor
 .vscode/*
@@ -34,7 +40,22 @@ lerna-debug.log*
 *.swp
 *.swo
 *~
+*.sublime-project
+*.sublime-workspace
 
 # OS
 Thumbs.db
+.DS_Store
+desktop.ini
+
+# Cache
+.cache
+.parcel-cache
+.eslintcache
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
 
