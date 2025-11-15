@@ -1,4 +1,4 @@
-# Premium Personal Portfolio
+# Vikash Kumar - Portfolio
 
 A high-performance, accessible, and visually stunning personal portfolio SPA built with React, Vite, and modern web technologies.
 
@@ -18,6 +18,7 @@ This portfolio is designed to showcase creative work while maintaining excellent
 - **Performance**: Code-splitting, lazy loading, optimized assets
 - **Testing**: Jest + React Testing Library + Storybook
 - **CI/CD**: GitHub Actions with lint, tests, and Lighthouse CI
+- **Back to Top Button**: Smooth scroll to top functionality
 
 ## 🚀 Quick Start
 
@@ -60,6 +61,7 @@ portfolio/
 ├── src/
 │   ├── assets/            # Images, models, etc.
 │   ├── components/        # React components
+│   │   ├── BackToTop/     # Back to top button
 │   │   ├── CustomCursor/  # Custom cursor component
 │   │   ├── Navbar/        # Navigation bar
 │   │   ├── ThreeScene/    # 3D scene components
@@ -251,4 +253,3 @@ MIT License - feel free to use this for your portfolio.
 ---
 
 Built with ❤️ using modern web technologies
-
