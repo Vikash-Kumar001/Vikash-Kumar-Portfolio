@@ -1,0 +1,208 @@
+@import './tokens.css';
+@import './light-mode.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-neutral-800;
+  }
+
+  html {
+    @apply scroll-smooth;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-900 text-neutral-50 font-sans antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+  }
+
+  /* Light mode specific base styles */
+  [data-theme='light'] * {
+    @apply border-neutral-200;
+  }
+
+  [data-theme='light'] body {
+    @apply bg-white text-neutral-900;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--color-glass-light);
+  }
+
+  /* Light mode glass effect - white with subtle border */
+  [data-theme='light'] .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
+  .neon-glow {
+    text-shadow: 0 0 10px var(--color-neon-accent), 0 0 20px var(--color-neon-accent),
+      0 0 30px var(--color-neon-accent);
+  }
+
+  /* Light mode - disable neon glow */
+  [data-theme='light'] .neon-glow {
+    text-shadow: none;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+/* Light mode comprehensive overrides */
+[data-theme='light'] {
+  /* Text color overrides for better contrast */
+  --light-text-primary: #0a0a0a;
+  --light-text-secondary: #404040;
+  --light-text-tertiary: #525252;
+}
+
+/* Light mode text colors - override Tailwind classes */
+[data-theme='light'] .text-neutral-300 {
+  color: var(--light-text-secondary) !important;
+}
+
+[data-theme='light'] .text-neutral-400 {
+  color: var(--light-text-tertiary) !important;
+}
+
+[data-theme='light'] .text-neutral-500 {
+  color: #737373 !important;
+}
+
+/* Light mode border overrides */
+[data-theme='light'] .border-neutral-700,
+[data-theme='light'] .border-neutral-800 {
+  border-color: #e5e5e5 !important;
+}
+
+/* Light mode input fields - ensure text is visible */
+[data-theme='light'] input[type='text'],
+[data-theme='light'] input[type='email'],
+[data-theme='light'] textarea {
+  color: #000000 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Light mode button text - ensure white text on gradient buttons is visible */
+[data-theme='light'] button.bg-gradient-to-r,
+[data-theme='light'] a.bg-gradient-to-r {
+  color: #ffffff !important;
+}
+
+/* Light mode icons and SVG colors */
+[data-theme='light'] svg.text-neutral-400 {
+  color: #737373 !important;
+}
+
+[data-theme='light'] svg.text-neutral-500 {
+  color: #737373 !important;
+}
+
+/* Light mode section backgrounds - use CSS custom properties for gradients */
+[data-theme='light'] section {
+  --light-gradient-from: #fafafa;
+  --light-gradient-via: #ffffff;
+  --light-gradient-to: #ffffff;
+}
+
+/* Light mode footer backgrounds */
+[data-theme='light'] footer {
+  --light-gradient-from: #fafafa;
+  --light-gradient-via: #f5f5f5;
+  --light-gradient-to: #f0f0f0;
+}
+
+/* Light mode radial gradient overlays - make subtle */
+[data-theme='light'] [style*='radial-gradient'],
+[data-theme='light'] [class*='radial-gradient'] {
+  opacity: 0.1 !important;
+}
+
+/* Light mode specific overrides for common background patterns */
+[data-theme='light'] .bg-neutral-900,
+[data-theme='light'] .bg-neutral-800 {
+  background-color: #ffffff !important;
+}
+
+[data-theme='light'] div.bg-neutral-900,
+[data-theme='light'] div.bg-neutral-800 {
+  background-color: #fafafa !important;
+}
+
+/* Light mode progress bars and similar elements */
+[data-theme='light'] .bg-neutral-800.rounded-full {
+  background-color: #e5e5e5 !important;
+}
+
+/* Light mode headings - ensure good contrast */
+[data-theme='light'] h1,
+[data-theme='light'] h2,
+[data-theme='light'] h3,
+[data-theme='light'] h4,
+[data-theme='light'] h5,
+[data-theme='light'] h6 {
+  color: var(--color-text);
+}
+
+/* Light mode labels */
+[data-theme='light'] label.text-neutral-300 {
+  color: var(--light-text-secondary) !important;
+}
+
+/* Light mode white text - change to dark in light mode */
+[data-theme='light'] .text-white:not(.bg-gradient-to-r):not(button):not(a) {
+  color: var(--color-text) !important;
+}
+
+/* Light mode scroll indicator */
+[data-theme='light'] .border-neutral-400 {
+  border-color: #a3a3a3 !important;
+}
+
+[data-theme='light'] .bg-neutral-400 {
+  background-color: #a3a3a3 !important;
+}
+

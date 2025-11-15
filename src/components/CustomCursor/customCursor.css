@@ -1,0 +1,57 @@
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--motion-easing-standard), height 0.3s var(--motion-easing-standard),
+    border-color 0.3s var(--motion-easing-standard), opacity 0.3s var(--motion-easing-standard);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s var(--motion-easing-standard);
+}
+
+.custom-cursor.cursor-hover {
+  width: 60px;
+  height: 60px;
+  border-color: var(--color-accent);
+}
+
+.custom-cursor.cursor-magnetic {
+  transition: width 0.3s var(--motion-easing-spring), height 0.3s var(--motion-easing-spring),
+    border-color 0.3s var(--motion-easing-standard);
+}
+
+.custom-cursor.cursor-pointer {
+  width: 30px;
+  height: 30px;
+  border-color: var(--color-neon-accent);
+}
+
+.custom-cursor.cursor-text {
+  width: 4px;
+  height: 24px;
+  border-radius: 2px;
+  border-color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    transition: none;
+  }
+}
+
