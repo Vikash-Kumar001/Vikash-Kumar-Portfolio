@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import MagneticButton from '../MagneticButton/MagneticButton';
+import ResumeButton from '../ResumeButton/ResumeButton';
 import './navbar.css';
 
 const Navbar = () => {
@@ -54,6 +55,9 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-actions">
+          <div className="hidden md:block">
+            <ResumeButton variant="dropdown" />
+          </div>
           <MagneticButton
             onClick={toggleTheme}
             className="theme-toggle"
@@ -96,6 +100,9 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            <div className="md:hidden p-4 border-t border-neutral-700/50">
+              <ResumeButton variant="split" className="w-full" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

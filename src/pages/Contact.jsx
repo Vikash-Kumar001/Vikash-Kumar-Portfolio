@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
 import MagneticButton from '@/components/MagneticButton/MagneticButton';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
@@ -17,6 +18,12 @@ const Contact = () => {
 
   useEffect(() => {
     initScrollAnimations();
+
+    // Initialize EmailJS
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
 
     return () => {
       cleanupScrollAnimations();
@@ -57,34 +64,60 @@ const Contact = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      // TODO: Replace with your form submission endpoint
-      const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/contact';
-      const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const recipientEmail = import.meta.env.VITE_EMAILJS_RECIPIENT_EMAIL || 'vikashkumarsudhi8527@gmail.com';
 
-      let submitUrl = endpoint;
-      if (formspreeId) {
-        submitUrl = `https://formspree.io/f/${formspreeId}`;
+      // Fallback to Formspree if EmailJS is not configured
+      if (!serviceId || !templateId || !publicKey) {
+        const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
+        if (formspreeId) {
+          const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+
+          if (response.ok) {
+            setStatus({ type: 'success', message: 'Thank you! Your message has been sent.' });
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            trackFormSubmission('contact');
+            return;
+          } else {
+            throw new Error('Submission failed');
+          }
+        } else {
+          throw new Error('Email service not configured. Please set up EmailJS or Formspree.');
+        }
       }
 
-      const response = await fetch(submitUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject || 'Contact Form Submission',
+        message: formData.message,
+        to_email: recipientEmail,
+      };
 
-      if (response.ok) {
-        setStatus({ type: 'success', message: 'Thank you! Your message has been sent.' });
+      // Send email using EmailJS
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      if (response.status === 200) {
+        setStatus({ type: 'success', message: 'Thank you! Your message has been sent. I will get back to you soon.' });
         setFormData({ name: '', email: '', subject: '', message: '' });
         trackFormSubmission('contact');
       } else {
         throw new Error('Submission failed');
       }
     } catch (error) {
+      console.error('Error sending email:', error);
       setStatus({
         type: 'error',
-        message: 'Sorry, there was an error sending your message. Please try again later.',
+        message: error.message || 'Sorry, there was an error sending your message. Please try again later.',
       });
     } finally {
       setIsSubmitting(false);

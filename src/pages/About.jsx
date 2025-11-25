@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
+import ResumeButton from '@/components/ResumeButton/ResumeButton';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
 
 const About = () => {
@@ -161,19 +161,66 @@ const About = () => {
           </SectionReveal>
           
           <SectionReveal delay={0.2}>
-            <div className="max-w-4xl mx-auto">
-              <div className="glass p-6 sm:p-8 md:p-10 rounded-2xl border border-neutral-700/50 backdrop-blur-xl">
-                <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed mb-4 sm:mb-6">
-                  Highly skilled <span className="text-primary font-semibold">Full-Stack Developer</span> with strong experience architecting, building, and deploying real-world products across web and mobile platforms. Proven ability to deliver production-ready features, improve performance end-to-end, and scale complex systems.
-                </p>
-                <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed mb-4 sm:mb-6">
-                  Proficient in <span className="text-primary font-semibold">MERN Stack</span>, AI integrations (Gemini API), real-time systems (Socket.IO), gamification, and multi-tenant architecture. Focused on shipping clean, reliable, and maintainable solutions with a strong product mindset.
-                </p>
-                <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed">
-                  As a self-driven individual, I embrace challenges, possess a solid background in teamwork, 
-                  and emphasize professional growth. I love turning complex problems into simple, beautiful, 
-                  and intuitive solutions.
-                </p>
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 items-center">
+                {/* Content Section - Takes 2 columns */}
+                <motion.div
+                  className="lg:col-span-2 glass p-6 sm:p-8 md:p-10 rounded-2xl border border-neutral-700/50 backdrop-blur-xl"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed mb-4 sm:mb-6">
+                    Highly skilled <span className="text-primary font-semibold">Full-Stack Developer</span> with strong experience architecting, building, and deploying real-world products across web and mobile platforms. Proven ability to deliver production-ready features, improve performance end-to-end, and scale complex systems.
+                  </p>
+                  <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed mb-4 sm:mb-6">
+                    Proficient in <span className="text-primary font-semibold">MERN Stack</span>, AI integrations (Gemini API), real-time systems (Socket.IO), gamification, and multi-tenant architecture. Focused on shipping clean, reliable, and maintainable solutions with a strong product mindset.
+                  </p>
+                  <p className="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed mb-6 sm:mb-8">
+                    As a self-driven individual, I embrace challenges, possess a solid background in teamwork, 
+                    and emphasize professional growth. I love turning complex problems into simple, beautiful, 
+                    and intuitive solutions.
+                  </p>
+                  <div className="pt-4 border-t border-neutral-700/50">
+                    <ResumeButton variant="split" />
+                  </div>
+                </motion.div>
+
+                {/* Profile Photo Section - Takes 1 column, right side */}
+                <motion.div
+                  className="flex justify-center lg:justify-end"
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <div className="relative">
+                    {/* Subtle professional photo container */}
+                    <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-96 rounded-2xl overflow-hidden border border-neutral-700/50 bg-neutral-800/50 backdrop-blur-sm shadow-xl">
+                      <img
+                        src="/images/vikash-image.png"
+                        alt="Vikash Kumar - Full Stack Developer"
+                    className="w-full h-full object-fill"
+                        loading="eager"
+                        onError={(e) => {
+                          // Fallback if image doesn't exist
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      {/* Placeholder if image not found */}
+                      <div className="hidden absolute inset-0 items-center justify-center bg-neutral-800 text-neutral-500">
+                        <div className="text-center">
+                          <svg className="w-20 h-20 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          <p className="text-xs">Add your photo</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </SectionReveal>

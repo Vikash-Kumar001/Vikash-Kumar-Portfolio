@@ -165,7 +165,6 @@ const Home = () => {
         {/* Static hero content */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <div className="text-center px-4 max-w-5xl mx-auto">
-
             <motion.h1
               className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 sm:mb-6 leading-tight px-2"
               initial={{ opacity: 0, y: 30 }}

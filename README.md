@@ -101,9 +101,12 @@ portfolio/
 
 Choose a form handler:
 
-1. **Formspree**: Add `VITE_FORMSPREE_ID` to `.env`
-2. **Netlify Forms**: Add `netlify` attribute to form (no env var needed)
-3. **Custom Endpoint**: Add `VITE_CONTACT_ENDPOINT` to `.env`
+1. **EmailJS** (Recommended): See `EMAIL_SETUP.md` for detailed setup instructions
+   - Add `VITE_EMAILJS_PUBLIC_KEY`, `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID` to `.env`
+   - Optionally set `VITE_EMAILJS_RECIPIENT_EMAIL` (defaults to vikashkumarsudhi8527@gmail.com)
+2. **Formspree**: Add `VITE_FORMSPREE_ID` to `.env`
+3. **Netlify Forms**: Add `netlify` attribute to form (no env var needed)
+4. **Custom Endpoint**: Add `VITE_CONTACT_ENDPOINT` to `.env`
 
 ### Analytics
 
