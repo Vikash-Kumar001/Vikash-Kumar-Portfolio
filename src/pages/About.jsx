@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-import SectionReveal from '@/components/SectionReveal/SectionReveal';
+
 import ResumeButton from '@/components/ResumeButton/ResumeButton';
+import SectionReveal from '@/components/SectionReveal/SectionReveal';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
 
 const About = () => {

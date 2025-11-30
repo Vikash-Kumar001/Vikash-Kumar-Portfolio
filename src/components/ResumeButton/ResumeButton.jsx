@@ -45,7 +45,7 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
 
   const handleDownload = (format) => {
     // Use the actual filename from the resume folder
-    const filename = `VikashKumar_Resume.${format}`;
+    const filename = `Vikash-Kumar-Resume.${format}`;
     const resumePath = `/resume/${filename}`;
     const link = document.createElement('a');
     link.href = resumePath;
