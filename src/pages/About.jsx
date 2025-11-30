@@ -16,58 +16,54 @@ const About = () => {
 
   const experiences = [
     {
-      title: 'Full Stack Developer',
-      company: 'Wise Student (AI-Powered Digital Wellness Platform)',
+      title: 'Full-Stack Intern',
+      company: 'Wise Student & Inavora',
       companyDetail: 'Magorix Pvt Ltd',
       location: 'Remote',
-      period: '2025 – Present',
-      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'Google Gemini API', 'Razorpay', 'Canvas API', 'AI/ML'],
+      period: 'Sep 2025 – Present',
+      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'Python', 'Flask', 'Google Gemini API', 'Razorpay', 'Stripe', 'Firebase', 'JWT', 'Cloudinary', 'Chart.js', 'D3.js'],
       achievements: [
-        'Architecting and developing FINMEN, an AI-powered digital wellness and financial literacy platform for 8–25 year-olds, managing the entire application lifecycle and production environment.',
-        'Scalability & Architecture: Architected and implemented a multi-role, multi-tenant ecosystem supporting 6+ user types (students, parents, educators) with fully isolated permissions and organizational segregation.',
-        'AI Integration: Developed an AI-based Cognitive Behavioral Therapy (CBT) chatbot using the Google Gemini API for adaptive therapeutic protocols and crisis detection.',
-        'Real-time Systems: Designed and optimized real-time Socket.IO infrastructure for dynamic features, including notifications, live profile updates, multi-user chat, and leaderboard synchronization.',
-        'Gamification: Engineered a full gamification framework with 1000+ daily challenges, an XP/HealCoins economy, and engaging educational mini-games using React and Canvas APIs.',
-        'E-commerce/Payments: Integrated Razorpay for managing subscription flows, a reward redemption marketplace, and automated invoice generation.',
-        'Performance: Optimized backend performance through database indexing, efficient Socket.IO room management, and horizontal scaling strategies.',
+        'Developed full-stack features for two major products: Wise Student (AI-powered wellness & finance platform) and Inavora (real-time interactive presentation system) using React, Node.js, Express, and MongoDB.',
+        'Architected and implemented real-time communication systems using Socket.IO for instant updates, live chat, participant tracking, synchronized slides, leaderboards, and notifications across both platforms.',
+        'Built comprehensive REST API ecosystems with 70+ endpoints covering authentication, analytics, gamification, user management, presentations, and slides, ensuring scalable and maintainable backend architecture.',
+        'Integrated AI capabilities through Python/Flask microservices and Google Gemini API, enabling advanced features like Cognitive Behavioral Therapy (CBT) chatbots and intelligent content generation.',
+        'Implemented secure payment processing systems using Razorpay and Stripe for subscription management, wallet features, and marketplace transactions with multi-tenant role-based access control.',
+        'Designed and developed multi-role dashboards supporting 6+ user types (students, educators, parents, sellers, admins, CSR partners) with role-specific permissions and organizational segregation.',
+        'Engineered interactive presentation features with 12+ interaction types, real-time collaboration tools, multi-language support (6+ languages), and dynamic data visualization using Chart.js and D3.js.',
+        'Integrated third-party services including Firebase Authentication, JWT-based session management, Cloudinary for media uploads, and comprehensive analytics tracking for both platforms.',
       ],
       icon: '🚀',
     },
     {
-      title: 'Data Analysis Intern',
+      title: 'Data Analyst Intern',
       company: 'Data Analytics & Business Intelligence',
-      companyDetail: 'Star App Solutions',
+      companyDetail: 'StarApp Solutions',
       location: 'Remote',
-      period: 'May 2025 – October 2025',
-      techStack: ['Python', 'SQL', 'Excel', 'Data Visualization', 'Statistical Analysis', 'Pandas', 'NumPy', 'Tableau', 'Power BI'],
+      period: 'May 2025 – Oct 2025',
+      techStack: ['Excel', 'SQL', 'Python', 'Pandas', 'Google Sheets', 'Data Visualization'],
       achievements: [
-        'Led comprehensive data analysis initiatives supporting strategic product decision-making and executive-level reporting, directly influencing business outcomes and product roadmap prioritization.',
-        'Architected and implemented automated data processing pipelines, reducing manual reporting time by 60% and enabling real-time insights for cross-functional teams including Product, Engineering, and Marketing.',
-        'Developed advanced analytical models and statistical frameworks to identify key performance indicators (KPIs), user behavior patterns, and market trends, providing actionable intelligence for leadership.',
-        'Designed and delivered executive dashboards and data visualizations using advanced BI tools, translating complex datasets into clear, strategic narratives for stakeholders and decision-makers.',
-        'Collaborated with product managers and engineers to establish data-driven workflows, implementing quality assurance protocols that improved data accuracy by 40% and ensured reliable reporting standards.',
-        'Conducted deep-dive analyses on user engagement metrics, conversion funnels, and feature adoption rates, delivering insights that informed product optimization strategies and resource allocation.',
-        'Established data governance best practices and documentation standards, creating reusable analytical frameworks that enhanced team productivity and knowledge sharing across the organization.',
+        'Cleaned and organized datasets for reporting and trend analysis.',
+        'Built dashboards and analytical reports using Excel, SQL, and Python.',
+        'Improved data quality by identifying issues and adding validation steps.',
+        'Collaborated with team members and worked with real-world datasets in a production setting.',
+        'Supported decision-making with insights and structured data views.',
       ],
       icon: '📊',
     },
     {
-      title: 'Full-Stack Developer Intern',
-      company: 'FinMen (Mental Wellness Platform)',
-      companyDetail: 'Jayadhi Limited',
-      location: 'Remote',
-      period: 'June 2025 – Aug 2025',
-      techStack: ['React', 'Node.js', 'Express.js', 'MongoDB Atlas', 'Tailwind CSS', 'JWT', 'Google OAuth', 'REST API', 'Anime.js', 'Framer Motion'],
+      title: 'HES Volunteer',
+      company: 'Ullas Trust',
+      companyDetail: 'Polaris Group CSR Initiative',
+      location: 'Gurugram, Haryana',
+      period: '2017 – Present',
+      techStack: ['Leadership', 'Mentoring', 'Team Coordination', 'Workshop Management'],
       achievements: [
-        'Participated in the development of FinMen, a multi-tiered application for mental wellness-specific interactions for users such as students, faculty members, and administrators.',
-        'Developed secure authentication features for user accounts including login, OTP, password reset, and Google OAuth using JWT, cookie-based sessions, and localStorage sync.',
-        'Created and protected role-specific dashboards with role-based access control routing with react-router-dom and custom ProtectedRoute logic.',
-        'Developed and published reusable UI components such as Navbar, Profile, Wallet, Leaderboard, Mood Tracker, Notifications, and Redemption flow.',
-        'Employed REST API communication with context-based state management through Axios for frontend-backend interactions.',
-        'Worked in an Agile team to develop scalable full-stack features for FinMen, including dashboards, backend systems, and integrations like chatbots and breathing exercises.',
-        'Conducted API evaluations with Postman, managed repository changes with Git, and adhered to set sprint deadlines for feature updates.',
+        'Leading and mentoring student groups (grades 9–12) across multiple annual Ullas programs.',
+        'Guiding students through personal development, emotional wellness, discipline, and academic growth.',
+        'Coordinating volunteer teams during workshops, events, and recognition programs.',
+        'Supporting Ullas Trust\'s mission of empowering students from under-resourced communities.',
       ],
-      icon: '🧠',
+      icon: '🤝',
     },
   ];
 
@@ -123,19 +119,27 @@ const About = () => {
   const skillCategories = [
     {
       category: 'Frontend',
-      skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Tailwind CSS', 'Daisy UI', 'ShadCN', 'Framer Motion', 'Anime.js', 'Three.js'],
+      skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'React Router', 'Tailwind CSS', 'Three.js', 'Framer Motion', 'Chart.js', 'Recharts'],
     },
     {
       category: 'Backend',
-      skills: ['Node.js', 'Express.js', 'Flask', 'REST API', 'Socket.io', 'JWT'],
+      skills: ['Node.js', 'Express.js', 'REST API', 'Flask', 'Socket.io'],
     },
     {
       category: 'Database',
-      skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase', 'MongoDB Atlas'],
+      skills: ['MySQL', 'SQL', 'PostgreSQL', 'Firebase', 'MongoDB', 'MongoDB Atlas', 'Supabase'],
     },
     {
-      category: 'Tools & Languages',
-      skills: ['Git', 'GitHub', 'Postman', 'Python', 'Java', 'C++'],
+      category: 'Payment & Auth',
+      skills: ['Razorpay', 'Stripe', 'JWT', 'OAuth', 'Bcrypt'],
+    },
+    {
+      category: 'Languages',
+      skills: ['C', 'C++', 'Python', 'Java'],
+    },
+    {
+      category: 'Tools & Others',
+      skills: ['Git', 'GitHub', 'Postman', 'Nodemailer', 'Notion', 'Canva', 'Microsoft Office', 'Real-time systems', 'Data modelling', 'Multi-Tenant architecture'],
     },
   ];
 
@@ -354,24 +358,26 @@ const About = () => {
             {education.map((edu, index) => (
               <SectionReveal key={index} delay={index * 0.1}>
                 <motion.div
-                  className="glass p-6 sm:p-8 rounded-2xl border border-neutral-700/50 hover:border-primary/50 transition-all h-full group relative overflow-hidden"
+                  className="glass p-6 sm:p-8 rounded-2xl border border-neutral-700/50 hover:border-primary/50 transition-all h-full group relative overflow-hidden flex flex-col"
                   whileHover={{ y: -5 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-accent/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-accent/10 transition-all duration-500"></div>
                   
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
                     <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform inline-block">
                       {edu.icon}
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
                       {edu.degree}
                     </h3>
-                    {edu.field && (
-                      <p className="text-primary font-semibold mb-2 sm:mb-3 text-sm sm:text-base">{edu.field}</p>
-                    )}
+                    <div className="min-h-[24px] mb-2 sm:mb-3">
+                      {edu.field && (
+                        <p className="text-primary font-semibold text-sm sm:text-base">{edu.field}</p>
+                      )}
+                    </div>
                     <p className="text-neutral-300 font-medium mb-1 sm:mb-2 text-sm sm:text-base">{edu.institution}</p>
                     <p className="text-neutral-400 text-xs sm:text-sm mb-3 sm:mb-4">{edu.location}</p>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-3 sm:pt-4 border-t border-neutral-700/50">
+                    <div className="mt-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-3 sm:pt-4 border-t border-neutral-700/50">
                       <span className="text-neutral-400 text-xs sm:text-sm">{edu.period}</span>
                       <span className="px-2 sm:px-3 py-1 rounded-lg bg-primary/20 text-primary text-xs sm:text-sm font-semibold">
                         {edu.grade}
@@ -474,7 +480,9 @@ const About = () => {
                         {index === 0 && '🎨'}
                         {index === 1 && '⚙️'}
                         {index === 2 && '💾'}
-                        {index === 3 && '🛠️'}
+                        {index === 3 && '💳'}
+                        {index === 4 && '📝'}
+                        {index === 5 && '🛠️'}
                       </span>
                     </div>
                     <div>
