@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { HiArrowUpRight } from 'react-icons/hi2';
 import ProjectModal from './ProjectModal';
+import ProjectThumbnail from './ProjectThumbnail';
 import './projectCard.css';
 
-const ProjectCard = ({ project, autoOpen = false, onOpen }) => {
+const ProjectCard = ({ project, autoOpen = false, onOpen, featured = false, onView }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (autoOpen) {
-      // Small delay to ensure the page has loaded
       const timer = setTimeout(() => {
         setIsModalOpen(true);
-        if (onOpen) {
-          onOpen();
-        }
+        onOpen?.();
       }, 500);
       return () => clearTimeout(timer);
     }
@@ -23,44 +23,55 @@ const ProjectCard = ({ project, autoOpen = false, onOpen }) => {
   const handleMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePosition({ x, y });
+    setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
+
+  const showThumbnail = !project.image || imageError;
 
   return (
     <>
       <motion.div
-        className="project-card"
+        className={`project-card ${featured ? 'project-card-featured' : ''}`}
         onMouseMove={handleMouseMove}
-        onClick={() => setIsModalOpen(true)}
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        onClick={() => {
+          onView?.();
+          setIsModalOpen(true);
+        }}
+        whileHover={{ y: -6 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 22 }}
         data-cursor="pointer"
-        data-magnetic="true"
       >
         <div
           className="project-card-glow"
           style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.15), transparent 40%)`,
+            background: `radial-gradient(500px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(234, 88, 12, 0.14), transparent 42%)`,
           }}
         />
+
         <div className="project-card-image-wrapper">
-          {project.image && (
+          {featured && <span className="project-card-badge">Featured</span>}
+          {showThumbnail ? (
+            <ProjectThumbnail title={project.title} subtitle={project.category} />
+          ) : (
             <img
               src={project.image}
               alt={project.title}
               loading="lazy"
               className="project-card-image"
+              onError={() => setImageError(true)}
             />
           )}
         </div>
+
         <div className="project-card-content">
-          <h3 className="project-card-title">{project.title}</h3>
+          <div className="project-card-header">
+            <h3 className="project-card-title">{project.title}</h3>
+            <HiArrowUpRight className="project-card-arrow" aria-hidden="true" />
+          </div>
           <p className="project-card-description">{project.description}</p>
           <div className="project-card-tags">
-            {project.tags?.map((tag, index) => (
-              <span key={index} className="project-card-tag">
+            {project.tags?.slice(0, 6).map((tag) => (
+              <span key={tag} className="project-card-tag">
                 {tag}
               </span>
             ))}
@@ -68,14 +79,9 @@ const ProjectCard = ({ project, autoOpen = false, onOpen }) => {
         </div>
       </motion.div>
 
-      <ProjectModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        project={project}
-      />
+      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={project} />
     </>
   );
 };
 
 export default ProjectCard;
-

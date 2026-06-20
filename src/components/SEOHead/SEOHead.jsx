@@ -7,8 +7,8 @@ const SEOHead = () => {
   const seoData = {
     '/': {
       title: 'Vikash Kumar | Full Stack Web Developer',
-      description: 'Full Stack Web Developer skilled in React.js, Node.js, and modern web frameworks. Building secure APIs and scalable web applications.',
-      keywords: 'full stack developer, react developer, node.js, web developer, portfolio, vikash kumar',
+      description: 'Full Stack Web Developer with 1 year of experience building production-grade SaaS applications with React.js, Node.js, AWS, and MongoDB.',
+      keywords: 'full stack developer, react developer, node.js, aws, saas developer, portfolio, vikash kumar',
     },
     '/about': {
       title: 'About | Vikash Kumar',
@@ -17,7 +17,7 @@ const SEOHead = () => {
     },
     '/projects': {
       title: 'Projects | Vikash Kumar',
-      description: 'Explore my latest projects including StareX chat application and College Complaint Management System',
+      description: 'Explore projects including ShadowSnitch AI risk dashboard, StareX chat application, and College Complaint Management System',
       keywords: 'projects, react projects, node.js projects, web development, portfolio',
     },
     '/contact': {

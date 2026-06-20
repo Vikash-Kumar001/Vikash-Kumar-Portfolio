@@ -3,45 +3,55 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './modal.css';
 
-const Modal = ({ isOpen, onClose, children, title, ariaLabel }) => {
+const getScrollPosition = () => {
+  if (typeof window === 'undefined') return 0;
+  return window.lenis?.scroll ?? window.scrollY;
+};
+
+const restoreScrollPosition = (scrollY) => {
+  if (typeof window === 'undefined') return;
+
+  const lenis = window.lenis;
+  if (lenis) {
+    lenis.scrollTo(scrollY, { immediate: true });
+    lenis.start();
+    return;
+  }
+
+  window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
+};
+
+const Modal = ({ isOpen, onClose, children, title, ariaLabel, contentClassName = '' }) => {
   const modalRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
-    if (isOpen) {
-      previousFocusRef.current = document.activeElement;
-      
-      // Store current scroll position
-      const scrollY = window.scrollY;
-      
-      // Prevent scrolling
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      
-      return () => {
-        // Restore scroll position
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
-        
-        if (previousFocusRef.current) {
-          previousFocusRef.current.focus();
-        }
-      };
-    } else {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      
-      if (previousFocusRef.current) {
-        previousFocusRef.current.focus();
-      }
+    if (!isOpen) return;
+
+    scrollPositionRef.current = getScrollPosition();
+    previousFocusRef.current = document.activeElement;
+
+    const lenis = window.lenis;
+    if (lenis) {
+      lenis.stop();
     }
+
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+
+      restoreScrollPosition(scrollPositionRef.current);
+
+      if (previousFocusRef.current?.focus) {
+        try {
+          previousFocusRef.current.focus({ preventScroll: true });
+        } catch {
+          // ignore unsupported browsers
+        }
+      }
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -75,7 +85,7 @@ const Modal = ({ isOpen, onClose, children, title, ariaLabel }) => {
       );
       const firstElement = focusableElements[0];
       if (firstElement) {
-        firstElement.focus();
+        firstElement.focus({ preventScroll: true });
       }
     }
   }, [isOpen]);
@@ -97,14 +107,14 @@ const Modal = ({ isOpen, onClose, children, title, ariaLabel }) => {
           />
           <motion.div
             ref={modalRef}
-            className="modal-content"
+            className={`modal-content ${contentClassName}`.trim()}
             role="dialog"
             aria-modal="true"
             aria-label={ariaLabel || title}
-            initial={{ opacity: 0, scale: 0.9, x: '-50%', y: '-50%' }}
+            initial={{ opacity: 0, scale: 0.96, x: '-50%', y: '-50%' }}
             animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-            exit={{ opacity: 0, scale: 0.9, x: '-50%', y: '-50%' }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            exit={{ opacity: 0, scale: 0.96, x: '-50%', y: '-50%' }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             style={{
               position: 'fixed',
               top: '50%',
@@ -134,4 +144,3 @@ const Modal = ({ isOpen, onClose, children, title, ariaLabel }) => {
 };
 
 export default Modal;
-

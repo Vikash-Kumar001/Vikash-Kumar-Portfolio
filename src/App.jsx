@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
 import SEOHead from './components/SEOHead/SEOHead';
 import BackToTop from './components/BackToTop/BackToTop';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <SEOHead />
+      <ScrollToTop />
       <Navbar />
       <AnimatePresence mode="wait">
         <Suspense

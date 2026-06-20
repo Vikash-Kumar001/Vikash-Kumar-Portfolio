@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HiMoon, HiSun } from 'react-icons/hi2';
 import { useTheme } from '@/contexts/ThemeContext';
-import MagneticButton from '../MagneticButton/MagneticButton';
 import ResumeButton from '../ResumeButton/ResumeButton';
-import './navbar.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,30 +13,35 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 24);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/projects', label: 'Projects' },
-    { path: '/contact', label: 'Contact' },
   ];
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <motion.nav
       className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" data-cursor="pointer">
-          VK
+          Vikash Kumar<span className="navbar-logo-dot">.</span>
         </Link>
 
         <ul className="navbar-links">
@@ -45,7 +49,7 @@ const Navbar = () => {
             <li key={link.path}>
               <Link
                 to={link.path}
-                className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                className={`navbar-link ${isActive(link.path) ? 'active' : ''}`}
                 data-cursor="pointer"
               >
                 {link.label}
@@ -55,18 +59,20 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-actions">
-          <div className="hidden md:block">
-            <ResumeButton variant="dropdown" />
-          </div>
-          <MagneticButton
-            onClick={toggleTheme}
-            className="theme-toggle"
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </MagneticButton>
-
+          <Link to="/contact" className="navbar-connect hidden lg:inline-flex" data-cursor="pointer">
+            Let&apos;s Connect
+          </Link>
           <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            data-cursor="pointer"
+          >
+            {theme === 'dark' ? <HiMoon className="w-5 h-5" /> : <HiSun className="w-5 h-5" />}
+          </button>
+          <button
+            type="button"
             className="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
@@ -87,20 +93,22 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28 }}
           >
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`mobile-menu-link ${location.pathname === link.path ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                className={`mobile-menu-link ${isActive(link.path) ? 'active' : ''}`}
                 data-cursor="pointer"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="md:hidden p-4 border-t border-neutral-700/50">
+            <Link to="/contact" className="mobile-menu-link text-primary font-semibold" data-cursor="pointer">
+              Let&apos;s Connect
+            </Link>
+            <div className="pt-3 border-t border-white/10 mt-2">
               <ResumeButton variant="split" className="w-full" />
             </div>
           </motion.div>
@@ -111,4 +119,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

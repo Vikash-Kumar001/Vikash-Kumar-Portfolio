@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Modal from '../Modal/Modal';
+import ProjectThumbnail from './ProjectThumbnail';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
   if (!project) return null;
@@ -7,22 +8,24 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={project.title} ariaLabel={project.title}>
       <div className="project-modal-content">
-        {project.image && (
-          <motion.div
-            className="project-modal-image-wrapper"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-          >
+        <motion.div
+          className="project-modal-image-wrapper"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+        >
+          {project.image ? (
             <img
               src={project.image}
               alt={project.title}
               className="project-modal-image"
               loading="lazy"
             />
-            <div className="project-modal-image-overlay"></div>
-          </motion.div>
-        )}
+          ) : (
+            <ProjectThumbnail title={project.title} subtitle={project.category} className="project-modal-thumbnail" />
+          )}
+          <div className="project-modal-image-overlay"></div>
+        </motion.div>
 
         <div className="project-modal-details">
           <motion.p

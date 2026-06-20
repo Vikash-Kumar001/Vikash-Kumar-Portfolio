@@ -43,9 +43,13 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
     };
   }, [isDropdownOpen]);
 
+  const resumeFiles = {
+    pdf: 'Vikash-Kumar-Fullstack-Resume.pdf',
+    docx: 'Vikash-Kumar-Resume.docx',
+  };
+
   const handleDownload = (format) => {
-    // Use the actual filename from the resume folder
-    const filename = `Vikash-Kumar-Resume.${format}`;
+    const filename = resumeFiles[format];
     const resumePath = `/resume/${filename}`;
     const link = document.createElement('a');
     link.href = resumePath;
@@ -59,6 +63,31 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
   // Minimal navbar-style button classes
   const navbarButtonClass = 'text-neutral-400 hover:text-white font-medium transition-colors duration-300 relative flex items-center gap-2 cursor-pointer';
   const navbarButtonActive = 'text-white';
+
+  if (variant === 'editorial') {
+    return (
+      <div className={`about-resume-actions ${className}`}>
+        <button
+          type="button"
+          onClick={() => handleDownload('pdf')}
+          className="about-resume-btn"
+          data-cursor="pointer"
+        >
+          <FileIcon className="w-4 h-4" />
+          <span>PDF</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => handleDownload('docx')}
+          className="about-resume-btn"
+          data-cursor="pointer"
+        >
+          <FileIcon className="w-4 h-4" />
+          <span>DOCX</span>
+        </button>
+      </div>
+    );
+  }
 
   if (variant === 'split') {
     return (
