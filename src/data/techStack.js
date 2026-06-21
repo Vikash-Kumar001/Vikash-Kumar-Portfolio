@@ -1,5 +1,6 @@
 import {
   SiChartdotjs,
+  SiContactlesspayment,
   SiExpress,
   SiFastapi,
   SiFirebase,
@@ -28,20 +29,20 @@ import {
 } from 'react-icons/si';
 import { FaAws, FaJava } from 'react-icons/fa6';
 
-/** @typedef {{ name: string; Icon: import('react').ComponentType; color: string; aliases?: string[] }} TechItem */
+/** @typedef {{ name: string; Icon: import('react').ComponentType; color: string; lightColor?: string; aliases?: string[] }} TechItem */
 
 /** @type {TechItem[]} */
 export const techCatalog = [
   { name: 'React', Icon: SiReact, color: '#61DAFB', aliases: ['React.js'] },
-  { name: 'Next.js', Icon: SiNextdotjs, color: '#FFFFFF' },
+  { name: 'Next.js', Icon: SiNextdotjs, color: '#FFFFFF', lightColor: '#000000' },
   { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E', aliases: ['JavaScript (ES6+)'] },
   { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
-  { name: 'Framer Motion', Icon: SiFramer, color: '#FFFFFF' },
-  { name: 'Three.js', Icon: SiThreedotjs, color: '#FFFFFF' },
+  { name: 'Framer Motion', Icon: SiFramer, color: '#FFFFFF', lightColor: '#0055FF' },
+  { name: 'Three.js', Icon: SiThreedotjs, color: '#FFFFFF', lightColor: '#000000' },
   { name: 'Chart.js', Icon: SiChartdotjs, color: '#FF6384' },
   { name: 'React Router', Icon: SiReactrouter, color: '#CA4245' },
   { name: 'Node.js', Icon: SiNodedotjs, color: '#339933' },
-  { name: 'Express', Icon: SiExpress, color: '#FFFFFF', aliases: ['Express.js'] },
+  { name: 'Express', Icon: SiExpress, color: '#FFFFFF', lightColor: '#000000', aliases: ['Express.js'] },
   { name: 'FastAPI', Icon: SiFastapi, color: '#009688', aliases: ['Flask'] },
   { name: 'Socket.io', Icon: SiSocketdotio, color: '#010101', aliases: ['Socket.IO'] },
   { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
@@ -51,14 +52,15 @@ export const techCatalog = [
   { name: 'Supabase', Icon: SiSupabase, color: '#3FCF8E' },
   { name: 'AWS', Icon: FaAws, color: '#FF9900', aliases: ['AWS EC2', 'AWS S3'] },
   { name: 'Nginx', Icon: SiNginx, color: '#009639' },
-  { name: 'Vercel', Icon: SiVercel, color: '#FFFFFF' },
-  { name: 'Render', Icon: SiRender, color: '#FFFFFF' },
+  { name: 'Vercel', Icon: SiVercel, color: '#FFFFFF', lightColor: '#000000' },
+  { name: 'Render', Icon: SiRender, color: '#FFFFFF', lightColor: '#000000' },
   { name: 'Stripe', Icon: SiStripe, color: '#635BFF' },
+  { name: 'Razorpay', Icon: SiContactlesspayment, color: '#3395FF' },
   { name: 'Google OAuth', Icon: SiGoogle, color: '#4285F4' },
   { name: 'Python', Icon: SiPython, color: '#3776AB' },
   { name: 'Java', Icon: FaJava, color: '#ED8B00' },
   { name: 'Git', Icon: SiGit, color: '#F05032' },
-  { name: 'GitHub', Icon: SiGithub, color: '#FFFFFF' },
+  { name: 'GitHub', Icon: SiGithub, color: '#FFFFFF', lightColor: '#181717' },
   { name: 'Postman', Icon: SiPostman, color: '#FF6C37' },
 ];
 
@@ -97,7 +99,7 @@ export const aboutSkillCategories = [
   },
   {
     category: 'Auth & Payment',
-    skills: ['Stripe', 'Google OAuth'],
+    skills: ['Stripe', 'Razorpay', 'Google OAuth'],
   },
   {
     category: 'Tools & Languages',

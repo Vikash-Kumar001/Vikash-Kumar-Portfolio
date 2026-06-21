@@ -5,6 +5,24 @@
  */
 export const certifications = [
   {
+    id: 'phemesoft-ml-internship',
+    title: 'Remote Mentoring Internship — Emotion Detection from Facial Expressions',
+    issuer: 'Phemesoft',
+    issuedDate: 'Jun 11, 2025',
+    file: 'phemesoft-ml-internship.png',
+    badge: '/certificates/badges/phemesoft-ml-internship.png',
+    preview: '/certificates/previews/phemesoft-ml-internship.png',
+  },
+  {
+    id: 'star-app-data-analysis-internship',
+    title: 'Certificate of Internship Completion — Data Analysis',
+    issuer: 'Star App Solutions',
+    issuedDate: 'Oct 16, 2025',
+    file: 'star-app-data-analysis-internship.png',
+    badge: '/certificates/badges/star-app-data-analysis.png',
+    preview: '/certificates/previews/star-app-data-analysis.png',
+  },
+  {
     id: 'ibm-ai-ml',
     title: 'Artificial Intelligence & Machine Learning Graduate',
     issuer: 'IBM',

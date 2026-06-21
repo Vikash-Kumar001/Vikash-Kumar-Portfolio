@@ -1,7 +1,7 @@
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: max(2rem, env(safe-area-inset-bottom));
+  right: max(2rem, env(safe-area-inset-right));
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -44,8 +44,8 @@
 /* Responsive */
 @media (max-width: 768px) {
   .back-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+    right: max(1.5rem, env(safe-area-inset-right));
     width: 44px;
     height: 44px;
   }
@@ -58,10 +58,10 @@
 
 @media (max-width: 480px) {
   .back-to-top {
-    bottom: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+    width: 44px;
+    height: 44px;
   }
 
   .back-to-top-icon {

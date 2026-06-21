@@ -4,6 +4,7 @@ import { HiArrowUpRight } from 'react-icons/hi2';
 
 import ProjectCard from '@/components/ProjectCard/ProjectCard';
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
+import SplitHeading from '@/components/SplitHeading/SplitHeading';
 import { trackProjectView } from '@/lib/analytics';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
 
@@ -115,7 +116,7 @@ const Projects = () => {
         <div className="page-container">
           <SectionReveal>
             <span className="section-label">Portfolio</span>
-            <h1 className="inner-hero-title">Selected work</h1>
+            <SplitHeading as="h1" className="inner-hero-title" lead="Selected" accent="work" />
             <p className="inner-hero-lead">
               Production applications spanning B2B SaaS, real-time systems, and full-stack platforms — each built
               with scalability, polish, and user experience at the center.
@@ -145,7 +146,7 @@ const Projects = () => {
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
               <div>
                 <span className="section-label">Case Studies</span>
-                <h2 className="section-heading mb-0">Projects</h2>
+                <SplitHeading as="h2" className="section-heading mb-0" lead="Featured" accent="projects" />
               </div>
               <div className="filter-pills mb-0">
                 {filters.map((filter) => (
@@ -187,7 +188,7 @@ const Projects = () => {
         <div className="page-container">
           <SectionReveal>
             <span className="section-label">Process</span>
-            <h2 className="section-heading">How I build products</h2>
+            <SplitHeading as="h2" className="section-heading" lead="How I build" accent="products" />
             <p className="max-w-2xl text-[var(--color-text-muted)] text-base leading-relaxed mb-12">
               A disciplined approach from discovery to deployment — ensuring every project ships with quality and
               intention.
@@ -212,7 +213,12 @@ const Projects = () => {
           <SectionReveal>
             <div className="editorial-card p-10 sm:p-14 text-center">
               <span className="section-label justify-center mb-5">Collaborate</span>
-              <h2 className="section-heading mb-4">Have a product in mind?</h2>
+              <SplitHeading
+                as="h2"
+                className="section-heading mb-4"
+                lead="Have a product"
+                accent="in mind?"
+              />
               <p className="max-w-xl mx-auto text-[var(--color-text-muted)] mb-8">
                 I&apos;m open to full-time roles, contract work, and ambitious product builds. Let&apos;s talk about
                 what you&apos;re creating.

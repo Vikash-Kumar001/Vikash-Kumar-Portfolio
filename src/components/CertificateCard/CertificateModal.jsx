@@ -60,7 +60,7 @@ const CertificateModal = ({ isOpen, onClose, certificate, asset }) => {
                 className="certificate-modal-action certificate-modal-action-primary"
                 data-cursor="pointer"
               >
-                Download PDF
+                Download {asset?.type === 'pdf' ? 'PDF' : 'Certificate'}
               </a>
             )}
             {certificate.verifyUrl && (

@@ -16,6 +16,7 @@ import {
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
+import SplitHeading from '@/components/SplitHeading/SplitHeading';
 import MagneticButton from '@/components/MagneticButton/MagneticButton';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
 import { trackFormSubmission } from '@/lib/analytics';
@@ -126,12 +127,18 @@ const Contact = () => {
       <section className="inner-hero contact-hero">
         <div className="page-container">
           <SectionReveal className="contact-header">
+            <div className="contact-header-eyebrow">
+              <span className="section-label contact-section-label">Contact</span>
+              <span className="availability-badge contact-availability-badge">Open to opportunities</span>
+            </div>
+
             <div className="contact-header-copy">
-              <div className="contact-header-eyebrow">
-                <span className="availability-badge">Open to opportunities</span>
-                <span className="section-label contact-section-label">Contact</span>
-              </div>
-              <h1 className="inner-hero-title contact-hero-title">Let&apos;s build something great</h1>
+              <SplitHeading
+                as="h1"
+                className="inner-hero-title contact-hero-title"
+                lead="Let's build"
+                accent="something great"
+              />
               <p className="inner-hero-lead contact-hero-lead">
                 Whether you have a product idea, a role to fill, or a technical challenge — I&apos;d love to hear
                 from you. Every great collaboration starts with a conversation.
@@ -158,6 +165,12 @@ const Contact = () => {
 
           <SectionReveal delay={0.12} className="contact-studio">
             <div className="contact-studio-services">
+              <img
+                src="/images/contact-character.png"
+                alt="Friendly developer character waving hello"
+                className="contact-studio-character"
+                loading="lazy"
+              />
               <div className="contact-studio-services-head">
                 <span className="contact-studio-kicker">Ways to collaborate</span>
                 <p>Choose the engagement model that fits your goals.</p>
@@ -352,7 +365,7 @@ const Contact = () => {
         <div className="page-container">
           <SectionReveal>
             <span className="section-label">FAQ</span>
-            <h2 className="section-heading">Common questions</h2>
+            <SplitHeading as="h2" className="section-heading" lead="Common" accent="questions" />
             <p className="about-section-lead">
               Quick answers before you reach out — though I&apos;m always happy to discuss specifics.
             </p>

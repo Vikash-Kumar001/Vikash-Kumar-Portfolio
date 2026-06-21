@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   HiArrowUpRight,
   HiBriefcase,
@@ -7,11 +6,14 @@ import {
   HiMapPin,
   HiSparkles,
 } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 
-import ResumeButton from '@/components/ResumeButton/ResumeButton';
 import CertificateCard from '@/components/CertificateCard/CertificateCard';
+import ResumeButton from '@/components/ResumeButton/ResumeButton';
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
-import TechIcon from '@/components/TechIcon/TechIcon';
+import SplitHeading from '@/components/SplitHeading/SplitHeading';
+import TechIcon, { resolveTechIconColor } from '@/components/TechIcon/TechIcon';
+import { useTheme } from '@/contexts/ThemeContext';
 import { certifications } from '@/data/certifications';
 import { aboutConcepts, aboutSkillCategories, resolveTech } from '@/data/techStack';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
@@ -38,33 +40,100 @@ const experiences = [
   {
     year: '2025',
     title: 'Full-Stack Developer',
-    company: 'Inavora & Wise Student',
+    company: 'Inavora, Wise Student & Ullam AI',
     companyDetail: 'Magorix Pvt Ltd',
     location: 'Remote',
     period: 'Jun 2025 – Jun 2026',
-    techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'AWS EC2', 'Nginx', 'PM2', 'Socket.IO'],
+    techStack: [
+      'React.js',
+      'TypeScript',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Razorpay',
+      'AWS EC2',
+      'Socket.IO',
+      'JWT',
+      'Google OAuth',
+    ],
     achievements: [
-      'Led full-stack development of Inavora and Wise Student, contributing ~70% of engineering and leading the dev team.',
-      'Built multi-tenant architecture, real-time Socket.IO systems, REST APIs, and role-based access control.',
-      'Integrated Razorpay with webhook verification, subscription lifecycle, and automated billing cron jobs.',
-      'Deployed on AWS EC2 with Nginx reverse proxy, SSL, and PM2 cluster mode.',
+      'Led full-stack development across Inavora, Wise Student, and Ullam AI — contributing ~70% of engineering and leading the dev team.',
+      'Built Ullam AI, a multi-faith emotional wellness platform with guided scripture reflection, institution dashboards, progress tracking, Heal Coins gamification, and platform admin tooling.',
+      'Developed React + TypeScript SPA and Node.js/Express REST APIs for scripture content, user profiles, institution membership, and JWT + Google OAuth authentication.',
+      'Built multi-tenant architecture, real-time Socket.IO systems, REST APIs, and RBAC for Inavora and Wise Student.',
+      'Integrated Razorpay with webhook verification, subscription lifecycle, and automated billing; deployed on AWS EC2 with Nginx, SSL, and PM2.',
     ],
     links: [
       { label: 'Wise Student', url: 'https://wisestudent.org/' },
       { label: 'Inavora', url: 'https://www.inavora.com/' },
+      { label: 'Ullam AI', url: 'https://ullam.ai/' },
+    ],
+  },
+  {
+    year: '2025',
+    title: 'Data Analysis Intern',
+    company: 'Star App Solutions Inc.',
+    companyDetail: 'Data Analysis Internship',
+    location: 'Remote',
+    period: 'May 2025 – Oct 2025',
+    techStack: ['Python', 'Data Analysis', 'Excel', 'SQL', 'Reporting'],
+    achievements: [
+      'Completed a five-month data analysis internship with Star App Solutions Inc. (May – Oct 2025).',
+      'Applied analytical workflows to support insights, reporting, and data-driven decision-making.',
+      'Recognized for dedication, technical growth, and a strong willingness to learn throughout the program.',
     ],
   },
   {
     year: '2025',
     title: 'ML Intern',
     company: 'Emotion Detection from Facial Expressions',
-    companyDetail: 'Pheme Software Pvt. Ltd.',
+    companyDetail: 'Phemesoft',
     location: 'Remote',
     period: 'Apr 2025 – Jun 2025',
     techStack: ['Python', 'Computer Vision', 'Machine Learning'],
     achievements: [
       'Built an emotion detection system using facial expression recognition with Python and computer vision.',
       'Delivered a real-world ML project under mentorship in a remote professional setting.',
+    ],
+  },
+  {
+    year: '2017',
+    title: 'HES Volunteer',
+    company: 'Ullas Trust',
+    companyDetail: 'Intellect Design Arena Ltd.',
+    location: 'Gurgaon, India',
+    period: '2017 – 2025',
+    techStack: ['Mentorship', 'Leadership', 'Youth Development', 'Workshop Facilitation'],
+    achievements: [
+      'Led and mentored student groups (grades 9–12) across multiple annual Ullas programs.',
+      'Guided students through personal development, emotional wellness, discipline, and academic growth.',
+      'Coordinated volunteer teams during workshops, events, and recognition programs.',
+      'Supported Ullas Trust’s mission of empowering students from under-resourced communities.',
+    ],
+  },
+  {
+    year: '2023',
+    title: 'Finalist',
+    company: 'IBM Hackathon',
+    companyDetail: 'Dehradun',
+    location: 'Dehradun, India',
+    period: '2023',
+    techStack: ['Python', 'TensorFlow', 'NLP', 'Machine Learning'],
+    achievements: [
+      'Developed an ML-based platform to detect abusive content using Python, TensorFlow, and NLP.',
+      'Built a real-time moderation system to flag offensive text.',
+    ],
+  },
+  {
+    year: '2022',
+    title: '3rd Place',
+    company: 'IBM ICE DAY',
+    companyDetail: 'Starex University',
+    location: 'Gurugram, India',
+    period: '2022',
+    techStack: ['Research', 'Presentation', 'Communication'],
+    achievements: [
+      'Recognized for strong communication, research, and presentation skills in a competitive presentation event.',
     ],
   },
 ];
@@ -98,8 +167,8 @@ const education = [
 
 const aboutStats = [
   { value: '1+', label: 'Years Experience' },
-  { value: '3', label: 'Production Apps' },
-  { value: '5', label: 'Certifications' },
+  { value: '4', label: 'Production Apps' },
+  { value: '7', label: 'Certifications' },
   { value: '70%', label: 'Core Engineering' },
 ];
 
@@ -118,26 +187,28 @@ const getCertificationGroups = () => {
   return groups;
 };
 
-const AboutSectionIntro = ({ label, title, description }) => (
+const AboutSectionIntro = ({ label, titleLead, titleAccent, description }) => (
   <SectionReveal>
     <span className="section-label">{label}</span>
-    <h2 className="section-heading">{title}</h2>
+    <SplitHeading as="h2" className="section-heading" lead={titleLead} accent={titleAccent} />
     <p className="about-section-lead">{description}</p>
   </SectionReveal>
 );
 
 const TechTag = ({ label }) => {
+  const { theme } = useTheme();
   const tech = resolveTech(label);
 
   if (!tech) {
     return <span className="about-tech-tag about-tech-tag--plain">{label}</span>;
   }
 
-  const { Icon, color } = tech;
+  const { Icon, color, lightColor } = tech;
+  const iconColor = resolveTechIconColor(color, lightColor, theme);
 
   return (
     <span className="about-tech-tag">
-      <span className="about-tech-tag-icon" style={{ color }}>
+      <span className="about-tech-tag-icon" style={{ color: iconColor }}>
         <Icon className="w-3.5 h-3.5" aria-hidden="true" />
       </span>
       {label}
@@ -174,7 +245,12 @@ const About = () => {
               <div className="about-header-eyebrow">
                 <span className="section-label about-section-label">About Me</span>
               </div>
-              <h1 className="inner-hero-title about-hero-title">Engineering products people trust</h1>
+              <SplitHeading
+                as="h1"
+                className="inner-hero-title about-hero-title"
+                lead="Engineering products"
+                accent="people trust"
+              />
               <p className="inner-hero-lead about-hero-lead">
                 I&apos;m a full-stack developer who cares as much about interface quality as backend
                 reliability — building SaaS products that feel premium from the first click.
@@ -202,21 +278,19 @@ const About = () => {
 
             <div className="about-studio-main">
               <div className="about-portrait-col">
-                <div className="about-portrait-frame">
-                  <div className="about-portrait-accent" aria-hidden="true" />
-                  {portraitError ? (
-                    <div className="about-portrait-placeholder" aria-label="Vikash Kumar">
-                      VK
-                    </div>
-                  ) : (
-                    <img
-                      src="/images/vikash-image.png"
-                      alt="Vikash Kumar"
-                      loading="eager"
-                      onError={() => setPortraitError(true)}
-                    />
-                  )}
-                </div>
+                {portraitError ? (
+                  <span className="about-portrait-fallback" aria-label="Developer avatar">
+                    {'</>'}
+                  </span>
+                ) : (
+                  <img
+                    src="/images/portfolio-avatar.png"
+                    alt="Anime-style developer avatar — Vikash Kumar"
+                    className="about-portrait hero-portrait-animated"
+                    loading="eager"
+                    onError={() => setPortraitError(true)}
+                  />
+                )}
                 <p className="about-portrait-name">Vikash Kumar</p>
                 <p className="about-portrait-role">Full-Stack Developer</p>
               </div>
@@ -225,13 +299,33 @@ const About = () => {
                 <span className="contact-panel-kicker">Profile</span>
                 <p className="about-bio-lead">
                   <span className="accent">Full-Stack Developer</span> with production experience across{' '}
-                  <span className="highlight">Inavora</span>, <span className="highlight">Wise Student</span>, and
-                  enterprise web platforms.
+                  <span className="highlight">Inavora</span>, <span className="highlight">Wise Student</span>,{' '}
+                  <span className="highlight">Ullam AI</span>, and enterprise web platforms — building SaaS products used
+                  by real users every day.
                 </p>
                 <p className="about-bio-text">
                   Skilled in React, Node.js, MongoDB, PostgreSQL, AWS, Socket.IO, multi-tenant systems, and payment
-                  integrations — with a sharp eye for UI craftsmanship.
+                  integrations — with a sharp eye for UI craftsmanship and engineering decisions that hold up in
+                  production.
                 </p>
+                <p className="about-bio-text">
+                  At <strong>Magorix Pvt Ltd</strong>, I lead core engineering for Inavora, Wise Student, and{' '}
+                  <strong>Ullam AI</strong> — from multi-tenant SaaS and Razorpay billing to a faith-inclusive wellness
+                  platform with scripture reflection, institution accounts, and progress dashboards. I design REST APIs,
+                  RBAC, real-time messaging, and AWS EC2 deployments with Nginx, SSL, and PM2.
+                </p>
+                <p className="about-bio-text">
+                  My background spans machine learning internships, data analysis, and IBM & MongoDB certifications. I
+                  bring the same rigor to architecture reviews, clean code, and thoughtful UX — whether scaling a
+                  product or delivering an MVP on a tight timeline.
+                </p>
+                <ul className="about-bio-highlights">
+                  <li>SaaS & multi-tenant systems</li>
+                  <li>Real-time & payment integrations</li>
+                  <li>AWS production deployments</li>
+                  <li>Faith-inclusive wellness (Ullam AI)</li>
+                  <li>UI craftsmanship</li>
+                </ul>
                 <ResumeButton variant="editorial" />
               </div>
             </div>
@@ -243,28 +337,27 @@ const About = () => {
         <div className="page-container">
           <AboutSectionIntro
             label="Philosophy"
-            title="How I approach building"
+            titleLead="How I approach"
+            titleAccent="building"
             description="Principles that guide every product decision — from architecture to the smallest interaction detail."
           />
-          <SectionReveal delay={0.08} className="about-panel">
-            <div className="about-panel-body">
-              <div className="about-principles-grid">
-                {principles.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <article key={item.title} className="about-principle-card">
-                      <div className="about-principle-top">
-                        <span className="about-principle-index">{String(index + 1).padStart(2, '0')}</span>
-                        <span className="about-principle-icon">
-                          <Icon className="w-4 h-4" />
-                        </span>
-                      </div>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </article>
-                  );
-                })}
-              </div>
+          <SectionReveal delay={0.08}>
+            <div className="about-principles-grid">
+              {principles.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} className="about-principle-card">
+                    <div className="about-principle-top">
+                      <span className="about-principle-index">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="about-principle-icon">
+                        <Icon className="w-4 h-4" />
+                      </span>
+                    </div>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </article>
+                );
+              })}
             </div>
           </SectionReveal>
         </div>
@@ -274,14 +367,15 @@ const About = () => {
         <div className="page-container">
           <AboutSectionIntro
             label="Experience"
-            title="Where I've built"
+            titleLead="Where I've"
+            titleAccent="built"
             description="Real-world roles shipping production features, leading teams, and solving complex engineering challenges."
           />
           <SectionReveal delay={0.08} className="about-panel">
             <div className="about-panel-body about-panel-body--flush">
               <div className="about-experience-list">
                 {experiences.map((exp, index) => (
-                  <article key={exp.title} className="about-experience-item">
+                  <article key={`${exp.title}-${exp.company}`} className="about-experience-item">
                     <div className="about-experience-meta">
                       <span className="about-experience-year">{exp.year}</span>
                       <span className="about-experience-period">{exp.period}</span>
@@ -337,26 +431,25 @@ const About = () => {
         <div className="page-container">
           <AboutSectionIntro
             label="Education"
-            title="Academic foundation"
+            titleLead="Academic"
+            titleAccent="foundation"
             description="A computer science background that laid the groundwork for full-stack engineering."
           />
-          <SectionReveal delay={0.08} className="about-panel">
-            <div className="about-panel-body">
-              <div className="about-education-grid">
-                {education.map((edu, index) => (
-                  <article key={edu.degree} className="about-education-card">
-                    <span className="about-education-index">{String(index + 1).padStart(2, '0')}</span>
-                    <h3>{edu.degree}</h3>
-                    {edu.field && <p className="about-education-field">{edu.field}</p>}
-                    <p className="about-education-school">{edu.institution}</p>
-                    <p className="about-education-location">{edu.location}</p>
-                    <div className="about-education-footer">
-                      <span>{edu.period}</span>
-                      <span className="about-education-grade">{edu.grade}</span>
-                    </div>
-                  </article>
-                ))}
-              </div>
+          <SectionReveal delay={0.08}>
+            <div className="about-education-grid">
+              {education.map((edu, index) => (
+                <article key={edu.degree} className="about-education-card">
+                  <span className="about-education-index">{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{edu.degree}</h3>
+                  <p className="about-education-field">{edu.field}</p>
+                  <p className="about-education-school">{edu.institution}</p>
+                  <p className="about-education-location">{edu.location}</p>
+                  <div className="about-education-footer">
+                    <span>{edu.period}</span>
+                    <span className="about-education-grade">{edu.grade}</span>
+                  </div>
+                </article>
+              ))}
             </div>
           </SectionReveal>
         </div>
@@ -366,7 +459,8 @@ const About = () => {
         <div className="page-container">
           <AboutSectionIntro
             label="Certifications"
-            title="Verified credentials"
+            titleLead="Verified"
+            titleAccent="credentials"
             description="Industry-recognized credentials from IBM and MongoDB — select any entry to preview or verify."
           />
           <SectionReveal delay={0.08}>
@@ -395,7 +489,8 @@ const About = () => {
         <div className="page-container">
           <AboutSectionIntro
             label="Skills"
-            title="Technical toolkit"
+            titleLead="Technical"
+            titleAccent="toolkit"
             description="Technologies and concepts I use to architect, build, and ship production-grade applications."
           />
           <SectionReveal delay={0.08}>
@@ -416,6 +511,7 @@ const About = () => {
                           name={tech.name}
                           Icon={tech.Icon}
                           color={tech.color}
+                          lightColor={tech.lightColor}
                           index={index}
                           variant="badge"
                         />

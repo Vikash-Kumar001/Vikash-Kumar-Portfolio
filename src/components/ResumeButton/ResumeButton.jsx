@@ -60,9 +60,9 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
     setIsDropdownOpen(false);
   };
 
-  // Minimal navbar-style button classes
-  const navbarButtonClass = 'text-neutral-400 hover:text-white font-medium transition-colors duration-300 relative flex items-center gap-2 cursor-pointer';
-  const navbarButtonActive = 'text-white';
+  // Navbar trigger + dropdown menu classes
+  const navbarButtonClass = 'navbar-resume-trigger';
+  const navbarButtonActive = 'is-open';
 
   if (variant === 'editorial') {
     return (
@@ -114,13 +114,14 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
 
   if (variant === 'dropdown') {
     return (
-      <div 
+      <div
         ref={dropdownRef}
-        className={`relative ${className}`}
+        className={`navbar-resume ${className}`}
         onMouseEnter={() => setIsDropdownOpen(true)}
         onMouseLeave={() => setIsDropdownOpen(false)}
       >
         <button
+          type="button"
           className={`${navbarButtonClass} ${isDropdownOpen ? navbarButtonActive : ''}`}
           onClick={(e) => {
             e.stopPropagation();
@@ -132,42 +133,42 @@ const ResumeButton = ({ variant = 'default', className = '' }) => {
         >
           <DownloadIcon className="w-4 h-4" />
           <span>Resume</span>
-          <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+          <ChevronDownIcon className={`navbar-resume-chevron ${isDropdownOpen ? 'is-open' : ''}`} />
         </button>
         <AnimatePresence>
           {isDropdownOpen && (
             <>
-              {/* Backdrop overlay for mobile */}
               <motion.div
-                className="fixed inset-0 z-40 md:hidden"
+                className="navbar-resume-backdrop lg:hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsDropdownOpen(false)}
               />
               <motion.div
-                className="absolute top-full right-0 mt-4 glass p-3 rounded-lg border border-neutral-700/50 min-w-[180px] z-50 backdrop-blur-xl"
-                initial={{ opacity: 0, y: -10 }}
+                className="navbar-resume-menu"
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <button
+                  type="button"
                   onClick={() => handleDownload('pdf')}
-                  className="w-full text-left px-4 py-2.5 rounded-md hover:text-white text-neutral-400 text-sm transition-colors flex items-center gap-2.5 group/item"
+                  className="navbar-resume-option"
                   data-cursor="pointer"
                 >
                   <FileIcon className="w-4 h-4 flex-shrink-0" />
-                  <span className="font-medium">PDF</span>
+                  <span>Download PDF</span>
                 </button>
-                <div className="h-px bg-neutral-700/50 my-1"></div>
                 <button
+                  type="button"
                   onClick={() => handleDownload('docx')}
-                  className="w-full text-left px-4 py-2.5 rounded-md hover:text-white text-neutral-400 text-sm transition-colors flex items-center gap-2.5 group/item"
+                  className="navbar-resume-option"
                   data-cursor="pointer"
                 >
                   <FileIcon className="w-4 h-4 flex-shrink-0" />
-                  <span className="font-medium">DOCX</span>
+                  <span>Download DOCX</span>
                 </button>
               </motion.div>
             </>

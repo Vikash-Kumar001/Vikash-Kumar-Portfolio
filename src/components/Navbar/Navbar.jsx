@@ -62,6 +62,9 @@ const Navbar = () => {
           <Link to="/contact" className="navbar-connect hidden lg:inline-flex" data-cursor="pointer">
             Let&apos;s Connect
           </Link>
+          <div className="hidden lg:block">
+            <ResumeButton variant="dropdown" />
+          </div>
           <button
             type="button"
             className="theme-toggle"
@@ -108,8 +111,8 @@ const Navbar = () => {
             <Link to="/contact" className="mobile-menu-link text-primary font-semibold" data-cursor="pointer">
               Let&apos;s Connect
             </Link>
-            <div className="pt-3 border-t border-white/10 mt-2">
-              <ResumeButton variant="split" className="w-full" />
+            <div className="mobile-menu-resume pt-3 border-t border-[var(--color-border)] mt-2">
+              <ResumeButton variant="dropdown" className="mobile-menu-resume-dropdown" />
             </div>
           </motion.div>
         )}

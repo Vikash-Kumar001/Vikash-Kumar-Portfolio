@@ -24,6 +24,16 @@
   align-items: end;
 }
 
+.inner-hero-title,
+.section-heading,
+.hero-copy h1 {
+  color: var(--color-text);
+}
+
+.heading-accent {
+  color: var(--color-primary);
+}
+
 .inner-hero-title {
   font-family: var(--font-serif);
   font-size: clamp(2.75rem, 6vw, 4.5rem);
@@ -549,7 +559,8 @@
 }
 
 .filter-pill {
-  padding: 0.55rem 1.15rem;
+  padding: 0.65rem 1.15rem;
+  min-height: 2.75rem;
   border-radius: 9999px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -898,29 +909,24 @@
 }
 
 .contact-header-eyebrow {
+  grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 1.25rem;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
   margin-bottom: 1.25rem;
 }
 
+.contact-header-eyebrow .contact-availability-badge {
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
+.contact-header-copy {
+  min-width: 0;
+}
+
 .contact-section-label {
-  margin: 0;
-}
-
-.contact-section-label::before,
-.contact-section-label::after {
-  display: none;
-}
-
-.contact-hero-title {
-  margin: 0 0 1rem;
-  max-width: 14ch;
-}
-
-.contact-hero-lead {
-  max-width: 36rem;
   margin: 0;
 }
 
@@ -932,6 +938,16 @@
   border-radius: 1rem;
   background: var(--color-surface-inset);
   border: 1px solid var(--color-border);
+}
+
+.contact-hero-title {
+  margin: 0 0 1rem;
+  max-width: 14ch;
+}
+
+.contact-hero-lead {
+  max-width: 36rem;
+  margin: 0;
 }
 
 .contact-highlight {
@@ -981,11 +997,30 @@
 }
 
 .contact-studio-services {
+  position: relative;
   padding: 1.75rem 2rem 1.5rem;
+  padding-right: min(10.5rem, 22vw);
   border-bottom: 1px solid var(--color-border);
 }
 
+.contact-studio-character {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(8.75rem, 18vw);
+  height: auto;
+  display: block;
+  border: none;
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .contact-studio-services-head {
+  position: relative;
+  z-index: 0;
+  padding-right: min(1rem, 3vw);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -1579,43 +1614,22 @@
   text-align: center;
 }
 
-.about-portrait-frame {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface-inset);
+.about-portrait {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin-inline: auto;
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
-.about-portrait-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-portrait-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+.about-portrait-fallback {
+  display: block;
   font-family: var(--font-serif);
   font-size: 3rem;
   font-weight: 600;
   color: var(--color-primary);
-  background:
-    radial-gradient(circle at 30% 20%, rgba(234, 88, 12, 0.18), transparent 45%),
-    var(--color-surface-muted);
-}
-
-.about-portrait-accent {
-  position: absolute;
-  inset: -1px;
-  border-radius: 1rem;
-  pointer-events: none;
-  border: 1px solid rgba(234, 88, 12, 0.2);
-  box-shadow: inset 0 0 40px rgba(234, 88, 12, 0.06);
 }
 
 .about-portrait-name {
@@ -1652,6 +1666,25 @@
 .about-bio-lead .accent {
   color: var(--color-primary);
   font-weight: 600;
+}
+
+.about-bio-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.about-bio-highlights li {
+  padding: 0.38rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-inset);
+  border: 1px solid var(--color-border);
 }
 
 .about-resume-actions {
@@ -1945,10 +1978,15 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
+  align-items: stretch;
 }
 
 .about-education-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
   padding: 1.35rem 1.15rem 1.15rem;
   border-radius: 0.95rem;
   border: 1px solid var(--color-border);
@@ -1988,9 +2026,17 @@
   color: var(--color-text-secondary);
 }
 
+.about-education-field {
+  min-height: 1.35rem;
+}
+
+.about-education-field:empty {
+  visibility: hidden;
+}
+
 .about-education-location {
   color: var(--color-text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .about-education-footer {
@@ -1998,6 +2044,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  margin-top: auto;
   padding-top: 0.85rem;
   border-top: 1px solid var(--color-border);
   font-size: 0.78rem;
@@ -2120,29 +2167,6 @@
   border-radius: 1.15rem;
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
-}
-
-.about-portrait-frame {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--color-border);
-}
-
-.about-portrait-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-portrait-accent {
-  position: absolute;
-  inset: -1px;
-  border-radius: 1rem;
-  pointer-events: none;
-  border: 1px solid rgba(234, 88, 12, 0.2);
-  box-shadow: inset 0 0 40px rgba(234, 88, 12, 0.06);
 }
 
 .about-intro-text p {
@@ -2316,6 +2340,14 @@
     padding-right: 1.35rem;
   }
 
+  .contact-studio-services {
+    padding-right: min(7.25rem, 34vw);
+  }
+
+  .contact-studio-character {
+    width: min(6.75rem, 30vw);
+  }
+
   .contact-header-aside {
     flex-direction: column;
   }
@@ -2368,6 +2400,16 @@
     padding-top: 6rem;
   }
 
+  .contact-hero-title,
+  .about-hero-title {
+    max-width: none;
+  }
+
+  .form-input,
+  .contact-form .form-input {
+    font-size: 16px;
+  }
+
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -2407,5 +2449,32 @@
 
   .projects-bento {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-header-eyebrow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .contact-header-eyebrow .contact-availability-badge {
+    margin-left: 0;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .contact-studio-character {
+    width: min(5.5rem, 30vw);
+  }
+
+  .contact-studio-services {
+    padding-right: min(6rem, 34vw);
+  }
+
+  .availability-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.85rem;
   }
 }

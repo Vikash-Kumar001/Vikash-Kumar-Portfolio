@@ -117,7 +117,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-secondary)] mb-5">Contact</h3>
             <ul className="space-y-3 text-sm text-[var(--color-text-muted)]">
               <li>
-                <a href="mailto:vikashkumarsudhi8527@gmail.com" className="hover:text-primary transition-colors" data-cursor="pointer">
+                <a href="mailto:vikashkumarsudhi8527@gmail.com" className="hover:text-primary transition-colors break-words" data-cursor="pointer">
                   vikashkumarsudhi8527@gmail.com
                 </a>
               </li>

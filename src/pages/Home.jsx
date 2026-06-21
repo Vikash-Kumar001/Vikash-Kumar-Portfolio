@@ -10,6 +10,7 @@ import {
 } from 'react-icons/hi2';
 import ExpertiseCard from '@/components/ExpertiseCard/ExpertiseCard';
 import SectionReveal from '@/components/SectionReveal/SectionReveal';
+import SplitHeading from '@/components/SplitHeading/SplitHeading';
 import TechIcon from '@/components/TechIcon/TechIcon';
 import { techStack } from '@/data/techStack';
 import { initScrollAnimations, cleanupScrollAnimations } from '@/lib/animations';
@@ -80,11 +81,11 @@ const Home = () => {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="section-label">Full-Stack SaaS Developer</span>
-              <h1>Vikash Kumar</h1>
+              <SplitHeading as="h1" className="" lead="Vikash" accent="Kumar" />
               <p className="hero-tagline">I build scalable SaaS products that solve real problems.</p>
               <p className="hero-description">
-                Full-stack developer with production experience across Wise Student, Inavora, and
-                enterprise-grade web platforms. I specialize in React, Node.js, AWS, MongoDB, real-time
+                Full-stack developer with production experience across Wise Student, Inavora, Ullam AI, and
+                enterprise-grade web platforms. I specialize in React, TypeScript, Node.js, AWS, MongoDB, real-time
                 systems, and polished interfaces that feel premium from the first interaction.
               </p>
 
@@ -116,25 +117,22 @@ const Home = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="hero-portrait-glow" aria-hidden="true" />
-              <div className="hero-portrait-wrap">
-                <img
-                  src="/images/vikash-image.png"
-                  alt="Vikash Kumar - Full-Stack SaaS Developer"
-                  className="hero-portrait"
-                  loading="eager"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const fallback = e.currentTarget.nextElementSibling;
-                    if (fallback) fallback.style.display = 'flex';
-                  }}
-                />
-                <div className="hero-portrait-fallback" aria-hidden="true">
-                  <span className="hero-portrait-fallback-initials">VK</span>
-                </div>
-              </div>
+              <img
+                src="/images/portfolio-avatar.png"
+                alt="Anime-style developer avatar — Vikash Kumar"
+                className="hero-portrait hero-portrait-animated"
+                loading="eager"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.nextElementSibling;
+                  if (fallback) fallback.style.display = 'block';
+                }}
+              />
+              <span className="hero-portrait-fallback" aria-hidden="true">
+                VK
+              </span>
               <p className="hero-portrait-caption">
-                Building digital products users love since 2021
+                Code-first. Design-driven. Shipping products that matter.
               </p>
             </motion.div>
           </div>
@@ -162,7 +160,7 @@ const Home = () => {
         <div className="page-container">
           <SectionReveal>
             <span className="section-label">Featured Work</span>
-            <h2 className="section-heading">Recent projects</h2>
+            <SplitHeading as="h2" className="section-heading" lead="Recent" accent="projects" />
             <p className="about-section-lead">
               Production-ready applications spanning SaaS dashboards, real-time systems, and full-stack platforms.
             </p>
@@ -207,7 +205,7 @@ const Home = () => {
         <div className="page-container">
           <SectionReveal>
             <span className="section-label">Tech Stack</span>
-            <h2 className="section-heading">Tools I build with</h2>
+            <SplitHeading as="h2" className="section-heading" lead="Tools I build" accent="with" />
             <p className="max-w-2xl text-[var(--color-text-muted)] text-base sm:text-lg leading-relaxed mb-10">
               Official, recognizable technologies chosen for performance, scalability, and maintainability.
             </p>
@@ -216,7 +214,13 @@ const Home = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-5">
             {techStack.map((tech, index) => (
               <SectionReveal key={tech.name} delay={index * 0.04}>
-                <TechIcon name={tech.name} Icon={tech.Icon} color={tech.color} index={index} />
+                <TechIcon
+                  name={tech.name}
+                  Icon={tech.Icon}
+                  color={tech.color}
+                  lightColor={tech.lightColor}
+                  index={index}
+                />
               </SectionReveal>
             ))}
           </div>
