@@ -21,6 +21,7 @@
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.11",
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^10.16.16",
     "gsap": "^3.12.2",
     "lenis": "^1.0.45",
