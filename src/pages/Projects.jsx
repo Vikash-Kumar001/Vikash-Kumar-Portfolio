@@ -50,9 +50,34 @@ const sampleProjects = [
       github: 'https://github.com/Vikash-Kumar001/College-Complaint-Management',
     },
   },
+  {
+    id: 4,
+    category: 'Upcoming',
+    title: 'Metio — Reader Community Platform',
+    description:
+      'An upcoming reader community product focused on discovery, local reading circles, and trust-safe book meetups.',
+    fullDescription:
+      'Designing a community-first reading platform that unifies book tracking, reading-personality matching, small circles, and local meetups. The product concept centers on helping readers find people nearby who share their taste, join small trusted circles, and turn reading into a social experience without sacrificing depth or privacy.',
+    image: null,
+    tags: ['Product Strategy', 'UX Design', 'Community Platforms', 'Next.js', 'Node.js', 'PostgreSQL'],
+    links: {
+      live: 'https://meetio-psi.vercel.app/',
+    },
+  },
+  {
+    id: 5,
+    category: 'Upcoming',
+    title: 'JobPilot',
+    description:
+      'An upcoming platform for safe, policy-aware job-search automation with explainable matching and human review gates.',
+    fullDescription:
+      'JobPilot is a controlled automation platform for job discovery and application workflows. It consolidates job sources, normalizes postings, scores fit using verified candidate data, generates truthful application documents, routes uncertainty to human review, and only submits applications when configured safety and policy gates pass.',
+    image: null,
+    tags: ['TypeScript', 'NestJS', 'PostgreSQL', 'Temporal', 'Playwright', 'Redis', 'OpenAI'],
+  },
 ];
 
-const filters = ['All', 'SaaS', 'Full-Stack'];
+const filters = ['All', 'SaaS', 'Full-Stack', 'Upcoming'];
 
 const processSteps = [
   {
@@ -118,8 +143,8 @@ const Projects = () => {
             <span className="section-label">Portfolio</span>
             <SplitHeading as="h1" className="inner-hero-title" lead="Selected" accent="work" />
             <p className="inner-hero-lead">
-              Production applications spanning B2B SaaS, real-time systems, and full-stack platforms — each built
-              with scalability, polish, and user experience at the center.
+              Production applications and ambitious upcoming products spanning B2B SaaS, real-time systems, and
+              community-driven platforms — each built with scalability, polish, and user experience at the center.
             </p>
 
             <div className="projects-hero-meta">

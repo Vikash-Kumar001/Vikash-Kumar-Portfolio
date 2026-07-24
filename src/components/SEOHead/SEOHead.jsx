@@ -17,8 +17,8 @@ const SEOHead = () => {
     },
     '/projects': {
       title: 'Projects | Vikash Kumar',
-      description: 'Explore projects including ShadowSnitch AI risk dashboard, StareX chat application, and College Complaint Management System',
-      keywords: 'projects, react projects, node.js projects, web development, portfolio',
+      description: 'Explore projects including ShadowSnitch AI risk dashboard, JobPilot SaaS automation platform, and community-focused product concepts like Metio',
+      keywords: 'projects, react projects, node.js projects, saas products, web development, portfolio',
     },
     '/contact': {
       title: 'Contact | Vikash Kumar',

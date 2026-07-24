@@ -52,6 +52,22 @@ const featuredProjects = [
     link: '/projects?project=3',
   },
   {
+    id: 4,
+    category: 'Upcoming',
+    title: 'Metio — Reader Community Platform',
+    description: 'Upcoming platform for reader discovery, local circles, and trust-safe book meetups.',
+    tech: 'Product Strategy · UX · Next.js · Node.js',
+    link: '/projects?project=4',
+  },
+  {
+    id: 5,
+    category: 'Upcoming',
+    title: 'JobPilot',
+    description: 'Controlled job-search automation platform with policy-safe application workflows and explainable matching.',
+    tech: 'TypeScript · NestJS · PostgreSQL · Temporal',
+    link: '/projects?project=5',
+  },
+  {
     id: 1,
     category: 'Full-Stack',
     title: 'StareX Chat',
